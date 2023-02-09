@@ -1,6 +1,6 @@
 import axios from "axios";
 import {useState} from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../css/style.css";
 import noPhoto from "../static/no-photos.png";
 import { AutoComplete, Input } from 'antd';
@@ -11,11 +11,13 @@ function Main() {
   const [titleQuery, setTitleQuery] = useState("");
   const [resultTitle, setresultTitle] = useState("");
   const [totCount, setTotCount] = useState("");
-  const selectList = [10, 25, 50, 100];
+  const selectList = [5, 10, 25, 50, 100];
   const [selected, setSelected] = useState(10);
   const [size, setSize] = useState("");
   const [arr, setArr] = useState([]);
   const [options, setOptions] = useState([]);
+  const movePage = useNavigate();
+
   const Emoji = props => (
     <span
         className="emoji"
@@ -105,47 +107,62 @@ function Main() {
     value: str.repeat(repeat)
   });
 
-  const onAutoSearch = (searchText) => {
+  const onAutoSearch = async(searchText) => {
+    var titleOption = [];
+    titleOption = titleOption.splice(0);
+    const result = await axios.get('/api/search',
+      { params: {query : searchText, from : from, size : selected} }
+    );
+    const arr = result.data.data;
+    var oriArr = Array.from(arr);
+    oriArr.map((element, i)=>{
+      titleOption.push({
+        key:element._source.ISBN_THIRTEEN_NO,
+        value: [
+        <div style={{display:"flex"}} key={element._source.ISBN_THIRTEEN_NO}>
+        <img id="autoImg" src={element._source.IMAGE_URL} height="115px" width="82px"  onError={handleImgError} alt="profile"></img>
+        &emsp;
+        <div><b>{element._source.TITLE_NM}</b> {element._score}<br/><span style={{color:"#595959"}}>{element._source.AUTHR_NM}<br/>{element._source.PUBLISHER_NM}</span></div>
+        </div>]
+      })
+    });
     setOptions(
       !searchText
         ? []
-        : [
-            mockVal(searchText),
-            mockVal(searchText, 2),
-            mockVal(searchText, 3),
-            mockVal(searchText, 4),
-            mockVal(searchText, 5),
-            mockVal(searchText, 6),
-            mockVal(searchText, 7),
-            mockVal(searchText, 8),
-            mockVal(searchText, 9)
-          ]
+        : titleOption
     );
   };
 
   return (
     <div className="App">
       <header className="App-header">
-        <input name="input" type="text" value={titleQuery} onChange={onTitleChange} placeholder="제목을 입력해주세요."></input>&emsp;
+        {/* <input name="input" type="text" value={titleQuery} onChange={onTitleChange} placeholder="제목을 입력해주세요."></input>&emsp;
         <button type="button" onClick={() => onSearch("S")}>검색</button>&emsp;
-        <select onChange={handleSelect} value={selected}>
-          {selectList.map((item) => (
-            <option value={item} key={item}>
-              {item}
-            </option>
-          ))}
-        </select>개 보기<Emoji symbol="🤔"/>
-        <br></br>
-        <AutoComplete
-          popupClassName="certain-category-search-dropdown"
-          dropdownMatchSelectWidth={1000}
-          // style={{ width: 250, height: 3000 }}
-          listHeight={512}
-          options={options}
-          onSearch={onAutoSearch}
-        >
-          <Input.Search size="large" placeholder="input here" />
-        </AutoComplete>
+        <br></br> */}
+        <div style={{display:"flex", justifyContent:"center"}}>
+          <div>
+          <AutoComplete
+            popupClassName="certain-category-search-dropdown"
+            listHeight={selected*76}
+            options={options}
+            onSearch={onAutoSearch}
+            onSelect={(e) => movePage("/book/"+e[0].key)}
+            notFoundContent="결과가 없습니다!"
+          >
+            <Input.Search size="large"  style={{ width: '1000px' }} placeholder="제목을 입력해주세요." />
+          </AutoComplete>
+          </div>
+          &emsp;
+          <div>
+            <select onChange={handleSelect} value={selected} style={{marginTop:"10%"}}>
+              {selectList.map((item) => (
+                <option value={item} key={item}>
+                  {item}
+                </option>
+              ))}
+            </select>개 보기<Emoji symbol="🤔"/>
+          </div>
+        </div>
         <br></br>
         <div id="hideDiv" name="hideDiv" style={{display:"none"}}>
           <div id="resultTextDiv"><b>{totCount}개의 검색 결과 중 {size}개까지의 '{resultTitle}' 검색 결과</b></div>
