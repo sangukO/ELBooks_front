@@ -34,7 +34,7 @@ function Detail() {
         <div></div>
       ) : (
         <div style={{display:"flex"}}>
-          <div>
+          <div style={{marginLeft:"35px", marginTop:"35px"}}>
             <img src={info[0]._source.IMAGE_URL} alt="profile" onError={handleImgError}></img><br/>
           </div>
           <div style={{width:"50px"}}></div>
