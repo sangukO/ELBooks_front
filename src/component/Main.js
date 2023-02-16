@@ -5,13 +5,7 @@ import noPhoto from "../static/no-photos.png";
 import { AutoComplete, Input, Layout, Menu } from 'antd';
 import { Content } from "antd/es/layout/layout";
 import {
-  VideoCameraOutlined,
-  UserOutlined,
-  UploadOutlined,
   SearchOutlined,
-  BookOutlined,
-  OrderedListOutlined,
-  UnorderedListOutlined
 } from '@ant-design/icons';
 const { Sider } = Layout;
 
@@ -48,13 +42,23 @@ function Main() {
   }
 
   const onAutoSearch = async(searchText) => {
-    var titleOption = [];
+
+    var titleOption = []; //자동완성 담을 배열 만들고 초기화
     titleOption = titleOption.splice(0);
-    const result = await axios.get('/api/search',
+
+    const result = await axios.get('/api/search', //값 받아오기
       { params: {query : searchText, from : from, size : selected} }
     );
     const arr = result.data.data;
-    var oriArr = Array.from(arr);
+    const count = result.data.count;
+    var oriArr = Array.from(arr); //map 함수를 쓰기 위해 유사 배열 > 배열로 변환
+
+    titleOption.push({
+      key:count,
+      value: [<span style={{color:"#595959"}}><span style={{color:"#1677ff"}}>{count}</span>개의 검색 결과</span>],
+      disabled:true,
+    });
+
     oriArr.map((element, i)=>{
       titleOption.push({
         key:element._source.ISBN_THIRTEEN_NO,
@@ -72,6 +76,7 @@ function Main() {
         </div>]
       })
     });
+
     setOptions(
       !searchText
         ? []
@@ -100,9 +105,8 @@ function Main() {
               {
                 key: '/List',
                 // icon: <BookOutlined />,
-                icon:<Emoji symbol="🚧"/>,
-                label: " 도서 목록",
-                disabled: true
+                icon:<Emoji symbol="📋"/>,
+                label: <Link to={"/List"}> 대시 보드</Link>
               },
               {
                 key: '3',
@@ -140,7 +144,7 @@ function Main() {
               </select>개 보기<Emoji symbol="🤔"/>
             </div>
           </div>
-        </Content>
+         </Content>
         </Layout>
     </div>
   );
