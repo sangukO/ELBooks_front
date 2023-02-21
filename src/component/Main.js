@@ -53,79 +53,35 @@ function Main() {
     const arr = result.data.data;
     const count = result.data.count;
     var oriArr = Array.from(arr); //map 함수를 쓰기 위해 유사 배열 > 배열로 변환
+    var bookListOpt = [];
 
-    // titleOption.push({
-    //   key:count,
-    //   value: [<span style={{color:"#595959"}} key={count}><span style={{color:"#1677ff"}}>{count}</span>개의 검색 결과</span>],
-    //   disabled:true,
-    // });
+    oriArr.map((e, i) => {
+      bookListOpt[i] = 
+      { value: e._source.ISBN_THIRTEEN_NO,
+        label:(
+          <div style={{display:"flex"}} key={e._source.ISBN_THIRTEEN_NO} title={e._source.TITLE_NM}>
+            <img id="autoImg" src={e._source.IMAGE_URL} height="115px" width="82px"  onError={handleImgError} alt="profile"></img>
+            &emsp;
+            <div>
+              <span id="bookTitle" dangerouslySetInnerHTML={{ __html: e.highlight["TITLE_NM.ngram"] }}></span>
+              <span style={{color:"#595959"}}>
+                {(e._source.AUTHR_NM.length >= 58) ? e._source.AUTHR_NM.substring(58,-1)+"..." : e._source.AUTHR_NM}<br/>
+                {e._source.PUBLISHER_NM}
+              </span>
+            </div>
+          </div>
+        )
+      }
+    })
 
-    // oriArr.map((element, i)=>{
-    //   titleOption.push({
-    //     key:element._source.ISBN_THIRTEEN_NO,
-    //     value: [
-    //     <div style={{display:"flex"}} key={element._source.ISBN_THIRTEEN_NO} title={element._source.TITLE_NM}>
-    //       <img id="autoImg" src={element._source.IMAGE_URL} height="115px" width="82px"  onError={handleImgError} alt="profile"></img>
-    //       &emsp;
-    //       <div>
-    //         {(element.highlight["TITLE_NM.ngram"].length >= 31) ? element.highlight["TITLE_NM.ngram"].substring(30,-1)+"..." : <span dangerouslySetInnerHTML={{ __html: element.highlight["TITLE_NM.ngram"] }}></span>}<br/>
-    //         <span style={{color:"#595959"}}>
-    //           {(element._source.AUTHR_NM.length >= 58) ? element._source.AUTHR_NM.substring(58,-1)+"..." : element._source.AUTHR_NM}<br/>
-    //           {element._source.PUBLISHER_NM}
-    //         </span>
-    //       </div>
-    //     </div>]
-    //   })
-    // });
-
-    
     titleOption.push(
       {
         label:<span style={{color:"#595959"}} key={count}><span style={{color:"#1677ff"}}>{count}</span>개의 검색 결과</span>,
-        options: [
-          { value: "ANT1",
-            label:(
-              oriArr.map((element, i)=>{
-              <div style={{display:"flex"}} key={element._source.ISBN_THIRTEEN_NO} title={element._source.TITLE_NM}>
-                <img id="autoImg" src={element._source.IMAGE_URL} height="115px" width="82px"  onError={handleImgError} alt="profile"></img>
-                &emsp;
-                <div>
-                  {(element.highlight["TITLE_NM.ngram"].length >= 31) ? element.highlight["TITLE_NM.ngram"].substring(30,-1)+"..." : <span dangerouslySetInnerHTML={{ __html: element.highlight["TITLE_NM.ngram"] }}></span>}<br/>
-                  <span style={{color:"#595959"}}>
-                    {(element._source.AUTHR_NM.length >= 58) ? element._source.AUTHR_NM.substring(58,-1)+"..." : element._source.AUTHR_NM}<br/>
-                    {element._source.PUBLISHER_NM}
-                  </span>
-                </div>
-              </div>
-              })
-            )
-          }
-        ]
+        options: bookListOpt
       }
     );
-
-    var opt = [
-      {
-        label: <span>Libraries</span>,
-        options: [{value: "ANT1", label:(<div style={{backgroundColor:"red"}}>ANT1</div>)},
-                  {value: "ANT2", label:(<div style={{backgroundColor:"orange"}}>ANT2</div>)},
-                  {value: "ANT3", label:(<div style={{backgroundColor:"yellow"}}>ANT3</div>)},
-                  {value: "ANT4", label:(<div style={{backgroundColor:"green"}}>ANT4</div>)},
-                  {value: "ANT5", label:(<div style={{backgroundColor:"blue"}}>ANT5</div>)},
-                  {value: "ANT6", label:(<div style={{backgroundColor:"navy"}}>ANT6</div>)},
-                  {value: "ANT7", label:(<div style={{backgroundColor:"purple"}}>ANT7</div>)}]
-      }
-    ]
-
-    setListOptions(opt);
-
-    listA = opt;
+    setListOptions(titleOption);
   };
-
-  const onSearch = () => {
-    console.log(listOptions);
-    console.log(listA);
-  }
 
   return (
     <div className="App">
@@ -170,10 +126,11 @@ function Main() {
               listHeight={selected*76}
               options={listOptions}
               onSearch={onAutoSearch}
-              onSelect={(e) => console.log(e)}
+              onSelect={(e) => movePage("/book/"+e)}
+              onMouseDown={() => console.log(searchText)}
               notFoundContent={<>{searchText?"Not found!":"Enter title!"}</>}
             >
-              <Input.Search size="large" className="input" style={{ width: '50vw' }} onChange={onChange} onSearch={onSearch} placeholder="제목을 입력해주세요." />
+              <Input.Search size="large" className="input" style={{ width: '50vw' }} onChange={onChange} placeholder="제목을 입력해주세요." />
             </AutoComplete>
             </div>
             &emsp;

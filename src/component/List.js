@@ -68,7 +68,11 @@ function List() {
               <span style={{ float: 'right', marginBottom:"5px" }}>*시계열 데이터가 아니라 그래프로 나타낼 수 없음</span>
               </div>
               <div>
-                <iframe src="http://localhost:5601/app/dashboards#/view/10cd0900-ac05-11ed-a4b6-a362b3c7b351?embed=true&_g=(filters%3A!()%2CrefreshInterval%3A(pause%3A!f%2Cvalue%3A10000)%2Ctime%3A(from%3A'2021-01-01T00%3A43%3A54.883Z'%2Cto%3Anow))&show-time-filter=true&hide-filter-bar=true" height="736" width="1234"></iframe>
+                <iframe
+                  src="http://localhost:5601/app/dashboards#/view/10cd0900-ac05-11ed-a4b6-a362b3c7b351?embed=true&_g=(filters%3A!()%2CrefreshInterval%3A(pause%3A!f%2Cvalue%3A10000)%2Ctime%3A(from%3A'2021-01-01T00%3A43%3A54.883Z'%2Cto%3Anow))&show-query-input=true&show-time-filter=true"
+                  // csp="script-src 'self' 'unsafe-inline' 'unsafe-eval' http://localhost:5601/"
+                  style={{width:"60vw", height:"55vh"}}>
+                </iframe>
               </div>
             </div>
           </div>
