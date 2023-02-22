@@ -3,10 +3,18 @@ import Main from "./component/Main";
 import Detail from "./component/Detail";
 import List from "./component/List";
 import "./css/style.css";
+import { ConfigProvider } from 'antd';
 
 function App() {
 
   return (
+    <ConfigProvider
+    theme={{
+      token: {
+        colorPrimary: '#eb2f96',
+      },
+    }}
+  >
     <Router>
     <div className="App">
       <header className="App-header">
@@ -18,6 +26,7 @@ function App() {
       </header>
     </div>
     </Router>
+  </ConfigProvider>
   );
 }
 
