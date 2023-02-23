@@ -43,14 +43,6 @@ function List() {
             <div style={{display:"inline-block"}}>
               <Progress id="prog" percent={percent} status="active" strokeColor={{ from: '#d3adf7', to: '#ffadd2' }} showInfo={true} />
               <div id="dashboard" style={{visibility:"hidden"}}>
-                <Alert
-                  banner
-                  message={
-                    <Marquee pauseOnHover gradient={false} speed={20}>
-                      I can be a React component, multiple React components, or just some text.
-                    </Marquee>
-                  }
-                />
                 <div style={{textAlign:"center"}}><h2>도서 목록 대시보드</h2>
                   <span style={{ float: 'right', marginBottom:"5px" }}>*시계열 데이터가 아니라 그래프로 나타낼 수 없음</span>
                 </div>
