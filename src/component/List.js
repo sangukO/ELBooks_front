@@ -1,5 +1,6 @@
 import "../css/style.css";
-import { Layout, Progress, Rate } from 'antd';
+import { Layout, Progress, Rate, Badge, Alert } from 'antd';
+import Marquee from 'react-fast-marquee';
 import { Content } from "antd/es/layout/layout";
 import MenuBar from "./Menu";
 import { useEffect, useState } from "react";
@@ -15,15 +16,15 @@ function List() {
   const [percent, setPercent] = useState(0);
 
   useEffect(() => {
-    
-    if(percent != 100) {
-      setPercent(percent+1);
-    }
-    else {
+    console.log(percent);
+    if(percent == 100) {
       var prog = document.getElementById("prog");
       var dsbd = document.getElementById("dashboard");
-      setTimeout(() => setPercent(prog.style.display = "none"), 700);
-      setTimeout(() => setPercent(dsbd.style.visibility = "visible"), 700);
+      setTimeout(() => prog.style.display = "none", 500);
+      setTimeout(() => dsbd.style.visibility = "visible", 500);
+    }
+    else {
+      setPercent(percent+1);
     }
   },[percent]);
 
@@ -31,7 +32,7 @@ function List() {
     <div className="App">
       <header className="App-header">
       </header>
-        <Layout style={{backgroundColor:"white", minHeight:"95vh"}}>
+        <Layout style={{backgroundColor:"white", minHeight:"98vh"}}>
         <Sider
           theme="light"
         >
@@ -40,10 +41,18 @@ function List() {
         <Content>
           <div style={{display:"flex", justifyContent:"center"}}>
             <div style={{display:"inline-block"}}>
-              <Progress id="prog" percent={percent} status="active" strokeColor={{ from: '#d3adf7', to: '#ffadd2' }} showInfo={false} />
+              <Progress id="prog" percent={percent} status="active" strokeColor={{ from: '#d3adf7', to: '#ffadd2' }} showInfo={true} />
               <div id="dashboard" style={{visibility:"hidden"}}>
+                <Alert
+                  banner
+                  message={
+                    <Marquee pauseOnHover gradient={false} speed={20}>
+                      I can be a React component, multiple React components, or just some text.
+                    </Marquee>
+                  }
+                />
                 <div style={{textAlign:"center"}}><h2>도서 목록 대시보드</h2>
-                <span style={{ float: 'right', marginBottom:"5px" }}>*시계열 데이터가 아니라 그래프로 나타낼 수 없음</span>
+                  <span style={{ float: 'right', marginBottom:"5px" }}>*시계열 데이터가 아니라 그래프로 나타낼 수 없음</span>
                 </div>
                 <div>
                   <iframe

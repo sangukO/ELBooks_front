@@ -1,8 +1,8 @@
 import axios from "axios";
-import {useState} from "react";
+import {useState,useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 import noPhoto from "../static/no-photos.png";
-import { AutoComplete, Input, Layout, Select } from 'antd';
+import { AutoComplete, Input, Layout, Select, FloatButton } from 'antd';
 import { Content } from "antd/es/layout/layout";
 import MenuBar from "./Menu";
 const { Sider } = Layout;
@@ -78,11 +78,15 @@ function Main() {
     setListOptions(titleOption);
   };
 
+  useEffect(() => {
+    console.log(window.visualViewport);
+  },[]);
+
   return (
-    <div className="App">
+    <div className="App" style={{minHeight:"500vh"}}>
       <header className="App-header">
       </header>
-        <Layout style={{backgroundColor:"white", minHeight:"95vh"}}>
+        <Layout style={{backgroundColor:"white", minHeight:"inherit"}}>
         <Sider theme="light">
           <div className="logo" />
           <MenuBar/>
@@ -118,6 +122,7 @@ function Main() {
           </div>
          </Content>
         </Layout>
+        <FloatButton.BackTop />
     </div>
   );
 }

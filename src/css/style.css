@@ -68,3 +68,18 @@ mark {
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
 }
+
+body::-webkit-scrollbar {
+    width: 10px;  
+}
+
+body::-webkit-scrollbar-thumb {
+    height: 30%; 
+    background: #ffd6e7; 
+    
+    border-radius: 5px;
+}
+
+body::-webkit-scrollbar-track {
+    background: rgba(255, 240, 246, 0.1);  
+}
