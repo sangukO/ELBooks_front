@@ -38,7 +38,7 @@ function Main() {
   }
 
   const onAutoSearch = async(searchText) => {
-
+    console.log(searchText);
     var titleOption = []; //자동완성 담을 배열 만들고 초기화
     titleOption = titleOption.splice(0);
 
@@ -71,16 +71,18 @@ function Main() {
 
     titleOption.push(
       {
-        label:<span style={{color:"#595959"}} key={count}><span style={{color:"#eb2f96"}}>{count}</span>개의 검색 결과</span>,
+        label: 
+        // <span style={{color:"#BFBFBF"}} key={count}><span style={{color:"#eb2f96"}}>{count}</span>개의 검색 결과</span>
+        count ? <span style={{color:"#BFBFBF"}} key={count}><span style={{color:"#eb2f96"}}>{count}</span>개의 검색 결과</span> : 
+               searchText ? <span style={{color:"#BFBFBF"}} key={count}>Not found!</span> :
+               <span style={{color:"#BFBFBF"}} key={count}>Enter title!</span>
+        ,
         options: bookListOpt
       }
     );
     setListOptions(titleOption);
+    console.log(bookListOpt);
   };
-
-  useEffect(() => {
-    console.log(window.visualViewport);
-  },[]);
 
   return (
     <div className="App" style={{minHeight:"500vh"}}>
@@ -101,7 +103,8 @@ function Main() {
               options={listOptions}
               onSearch={onAutoSearch}
               onSelect={(e) => movePage("/book/"+e)}
-              notFoundContent={<>{searchText?"Not found!":"Enter title!"}</>}
+              notFoundContent={<>{searchText==""||searchText==null?"Enter title!":"Not found!"}</>}
+              backfill={true}
             >
               <Input.Search size="large" className="input" style={{ width: '50vw' }} onChange={onChange} placeholder="제목을 입력해주세요." />
             </AutoComplete>
