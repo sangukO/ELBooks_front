@@ -11,12 +11,11 @@ import {
 } from '@ant-design/icons';
 const { Sider } = Layout;
 
-function List() {
+function Board() {
 
   const [percent, setPercent] = useState(0);
 
   useEffect(() => {
-    console.log(percent);
     if(percent == 100) {
       var prog = document.getElementById("prog");
       var dsbd = document.getElementById("dashboard");
@@ -24,7 +23,7 @@ function List() {
       setTimeout(() => dsbd.style.visibility = "visible", 500);
     }
     else {
-      setPercent(percent+1);
+      setTimeout(() => setPercent(percent+1), 1);
     }
   },[percent]);
 
@@ -32,12 +31,8 @@ function List() {
     <div className="App">
       <header className="App-header">
       </header>
-        <Layout style={{backgroundColor:"white", minHeight:"98vh"}}>
-        <Sider
-          theme="light"
-        >
+      <Layout style={{backgroundColor:"white", minHeight:"95vh"}}>
         <MenuBar/>
-        </Sider>
         <Content>
           <div style={{display:"flex", justifyContent:"center"}}>
             <div style={{display:"inline-block"}}>
@@ -64,4 +59,4 @@ function List() {
   );
 }
 
-export default List;
+export default Board;

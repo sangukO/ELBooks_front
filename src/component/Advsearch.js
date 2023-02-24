@@ -5,9 +5,8 @@ import noPhoto from "../static/no-photos.png";
 import { AutoComplete, Input, Layout, Select, FloatButton } from 'antd';
 import { Content } from "antd/es/layout/layout";
 import MenuBar from "./Menu";
-const { Sider } = Layout;
 
-function Main() {
+function Advsearch() {
   const [searchText, setSearchText] = useState("");
   const [from, setFrom] = useState(0);
   const [selected, setSelected] = useState(10);
@@ -88,27 +87,27 @@ function Main() {
     <div className="App">
       <header className="App-header">
       </header>
-        <Layout style={{backgroundColor:"white", minHeight:"500vh"}}>
+        <Layout style={{backgroundColor:"white", minHeight:"95vh"}}>
           <MenuBar/>
           <Content>
             <div style={{display:"flex", justifyContent:"center"}}>
               <div id="font_large" style={{marginTop:"0.7%"}}>
-                제목 검색
+                상세 검색
               </div>
               &emsp;
               <div>
-              <AutoComplete
-                popupClassName="certain-category-search-dropdown"
-                defaultActiveFirstOption={false}
-                listHeight={(selected*76)+32}
-                options={listOptions}
-                onSearch={onAutoSearch}
-                onSelect={(e) => movePage("/book/"+e)}
-                notFoundContent={<>{searchText===""||searchText===null?"Enter title!":"Not found!"}</>}
-                backfill={true}
-              >
-                <Input.Search size="large" className="input" style={{ width: '50vw' }} onChange={onChange} placeholder="제목을 입력해주세요." />
-              </AutoComplete>
+                <AutoComplete
+                  popupClassName="certain-category-search-dropdown"
+                  defaultActiveFirstOption={false}
+                  listHeight={(selected*76)+32}
+                  options={listOptions}
+                  onSearch={onAutoSearch}
+                  onSelect={(e) => movePage("/book/"+e)}
+                  notFoundContent={<>{searchText===""||searchText===null?"Enter title!":"Not found!"}</>}
+                  backfill={true}
+                >
+                  <Input.Search size="large" className="input" style={{ width: '50vw' }} onChange={onChange} placeholder="제목을 입력해주세요." />
+                </AutoComplete>
               </div>
               &emsp;
               <div id="font_large">
@@ -131,4 +130,4 @@ function Main() {
   );
 }
 
-export default Main;
+export default Advsearch;

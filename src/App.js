@@ -1,7 +1,8 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Main from "./component/Main";
 import Detail from "./component/Detail";
-import List from "./component/List";
+import Board from "./component/Board";
+import Advsearch from "./component/Advsearch";
 import "./css/style.css";
 import { ConfigProvider } from 'antd';
 
@@ -21,7 +22,8 @@ function App() {
         <Routes>
             <Route path="/" element={<Main/>} />
             <Route path="/book/:id" element={<Detail/>} />
-            <Route path="/list" element={<List/>} />
+            <Route path="/board" element={<Board/>} />
+            <Route path="/advsearch" element={<Advsearch/>} />
         </Routes>
       </header>
     </div>
