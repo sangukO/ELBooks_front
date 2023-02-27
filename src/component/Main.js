@@ -5,7 +5,6 @@ import noPhoto from "../static/no-photos.png";
 import { AutoComplete, Input, Layout, Select, FloatButton } from 'antd';
 import { Content } from "antd/es/layout/layout";
 import MenuBar from "./Menu";
-const { Sider } = Layout;
 
 function Main() {
   const [searchText, setSearchText] = useState("");
@@ -92,9 +91,9 @@ function Main() {
           <MenuBar/>
           <Content>
             <div style={{display:"flex", justifyContent:"center"}}>
-              <div id="font_large" style={{marginTop:"0.7%"}}>
+              <p id="font_large">
                 제목 검색
-              </div>
+              </p>
               &emsp;
               <div>
               <AutoComplete
@@ -115,10 +114,10 @@ function Main() {
                 <Select
                   id="font_large" style={{marginTop:"4%", width:"65px"}}
                   onChange={handleSelect} defaultValue={{ value: selected, label: selected }}
-                  options={[{ value: 5, label: 5}, 
-                    { value: 10, label: 10}, 
-                    { value: 25, label: 25}, 
-                    { value: 50, label: 50}, 
+                  options={[{ value: 5, label: 5},
+                    { value: 10, label: 10},
+                    { value: 25, label: 25},
+                    { value: 50, label: 50},
                     { value: 100, label: 100}]}
                 >
                 </Select>개 보기<Emoji symbol="🍒"/>

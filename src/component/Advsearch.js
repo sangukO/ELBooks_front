@@ -91,9 +91,9 @@ function Advsearch() {
           <MenuBar/>
           <Content>
             <div style={{display:"flex", justifyContent:"center"}}>
-              <div id="font_large" style={{marginTop:"0.7%"}}>
+              <p id="font_large">
                 상세 검색
-              </div>
+              </p>
               &emsp;
               <div>
                 <AutoComplete

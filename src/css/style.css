@@ -84,3 +84,8 @@ body::-webkit-scrollbar-track {
 .ant-menu-light.ant-menu-inline .ant-menu-sub.ant-menu-inline {
     background-color: white;
 }
+
+::selection {
+    background-color: #fff0f6;
+    color: #eb2f96;
+}

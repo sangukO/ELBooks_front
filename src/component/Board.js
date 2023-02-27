@@ -1,22 +1,18 @@
 import "../css/style.css";
-import { Layout, Progress, Rate, Badge, Alert } from 'antd';
-import Marquee from 'react-fast-marquee';
+import { Layout, Progress, Rate } from 'antd';
 import { Content } from "antd/es/layout/layout";
 import MenuBar from "./Menu";
 import { useEffect, useState } from "react";
 import {
-  HeartOutlined,
   HeartFilled,
-  HeartTwoTone,
 } from '@ant-design/icons';
-const { Sider } = Layout;
 
 function Board() {
 
   const [percent, setPercent] = useState(0);
 
   useEffect(() => {
-    if(percent == 100) {
+    if(percent === 100) {
       var prog = document.getElementById("prog");
       var dsbd = document.getElementById("dashboard");
       setTimeout(() => prog.style.display = "none", 500);
@@ -43,6 +39,7 @@ function Board() {
                 </div>
                 <div>
                   <iframe
+                    title="dashboard"
                     src="http://localhost:5601/app/dashboards#/view/10cd0900-ac05-11ed-a4b6-a362b3c7b351?embed=true&_g=(filters%3A!()%2CrefreshInterval%3A(pause%3A!f%2Cvalue%3A10000)%2Ctime%3A(from%3A'2021-01-01T00%3A43%3A54.883Z'%2Cto%3Anow))&show-query-input=true&show-time-filter=true"
                     style={{width:"60vw", height:"55vh"}}>
                   </iframe>
