@@ -2,7 +2,7 @@ import axios from "axios";
 import {useState} from "react";
 import { useNavigate } from "react-router-dom";
 import noPhoto from "../static/no-photos.png";
-import { AutoComplete, Input, Layout, Select, FloatButton } from 'antd';
+import { AutoComplete, Input, Layout, Select, FloatButton, Col, Row, Table } from 'antd';
 import { Content } from "antd/es/layout/layout";
 import MenuBar from "./Menu";
 
@@ -121,6 +121,21 @@ function Advsearch() {
                     { value: 100, label: 100}]}
                 >
                 </Select>개 보기<Emoji symbol="🍒"/>
+              </div>
+            </div>
+            <div>
+              <div className="row">
+                <Row style={{textAlign:"center"}}>
+                  <Col span={1}/>
+                  <Col span={4}>
+                    <h4>
+                      상세 검색 조건
+                    </h4>
+                    <Table>
+                      
+                    </Table>
+                  </Col>
+                </Row>
               </div>
             </div>
           </Content>
