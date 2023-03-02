@@ -2,7 +2,7 @@ import axios from "axios";
 import {useState} from "react";
 import { useNavigate } from "react-router-dom";
 import noPhoto from "../static/no-photos.png";
-import { AutoComplete, Input, Layout, Select, FloatButton, Col, Row, Table } from 'antd';
+import { AutoComplete, Input, Layout, Select, FloatButton, Col, Row, Table, Checkbox } from 'antd';
 import { Content } from "antd/es/layout/layout";
 import MenuBar from "./Menu";
 
@@ -83,6 +83,16 @@ function Advsearch() {
     console.log(bookListOpt);
   };
 
+  const advMovePage = async(e) => {
+    console.log(e);
+    const result = await axios.get('/api/single',
+      { params: {query : e} }
+    );
+    const tmp = result.data.data;
+    console.log(tmp[1]);
+    axios.get('api/transfer', { params: tmp[1] })
+  }
+
   return (
     <div className="App">
       <header className="App-header">
@@ -102,7 +112,7 @@ function Advsearch() {
                   listHeight={(selected*76)+32}
                   options={listOptions}
                   onSearch={onAutoSearch}
-                  onSelect={(e) => movePage("/book/"+e)}
+                  onSelect={(e) => advMovePage(e)}
                   notFoundContent={<>{searchText===""||searchText===null?"Enter title!":"Not found!"}</>}
                   backfill={true}
                 >
@@ -125,15 +135,69 @@ function Advsearch() {
             </div>
             <div>
               <div className="row">
-                <Row style={{textAlign:"center"}}>
+                <Row style={{ padding: '8px 0'}}>
                   <Col span={1}/>
-                  <Col span={4}>
-                    <h4>
+                  <Col span={4} style={{}}>
+                    <p style={{textAlign:"center"}}>
                       상세 검색 조건
-                    </h4>
-                    <Table>
+                    </p>
+                  <Col span={19}/>
+                    <Row style={{}}>
                       
-                    </Table>
+                      <Col span={6}/>
+                      <Col span={12} className="center">
+                        가격
+                      </Col>
+                      <Col span={6}/>
+
+                      <Col span={6}/>
+                      <Col span={12} className="center">
+                        -
+                      </Col>
+                      <Col span={6}>
+                        <Checkbox></Checkbox>
+                      </Col>
+                      
+                      <Col span={6}/>
+                      <Col span={12} className="center">
+                        ~ 1000
+                      </Col>
+                      <Col span={6}>
+                        <Checkbox></Checkbox>
+                      </Col>
+
+                      <Col span={6}/>
+                      <Col span={12} className="center">
+                        ~ 5000
+                      </Col>
+                      <Col span={6}>
+                        <Checkbox></Checkbox>
+                      </Col>
+
+                      <Col span={6}/>
+                      <Col span={12} className="center">
+                        ~ 10000
+                      </Col>
+                      <Col span={6}>
+                        <Checkbox></Checkbox>
+                      </Col>
+                      
+                      <Col span={6}/>
+                      <Col span={12} className="center">
+                        ~ 50000
+                      </Col>
+                      <Col span={6}>
+                        <Checkbox></Checkbox>
+                      </Col>
+                      
+                      <Col span={6}/>
+                      <Col span={12} className="center">
+                        ~ 100000
+                      </Col>
+                      <Col span={6}>
+                        <Checkbox></Checkbox>
+                      </Col>
+                    </Row>
                   </Col>
                 </Row>
               </div>

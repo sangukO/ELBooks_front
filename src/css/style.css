@@ -17,6 +17,11 @@
     font-weight: normal;
 }
 
+.row * {
+    font-family: 'Pretendard-Regular';
+    font-weight: normal;
+}
+
 .input * {
     font-family: 'Pretendard-Regular';
 }
@@ -88,4 +93,8 @@ body::-webkit-scrollbar-track {
 ::selection {
     background-color: #fff0f6;
     color: #eb2f96;
+}
+
+.center {
+    text-align: center;
 }
