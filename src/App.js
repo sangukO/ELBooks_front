@@ -2,7 +2,6 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Main from "./component/Main";
 import Detail from "./component/Detail";
 import Board from "./component/Board";
-import Advsearch from "./component/Advsearch";
 import "./css/style.css";
 import { ConfigProvider } from 'antd';
 
@@ -12,8 +11,7 @@ function App() {
     <ConfigProvider
     theme={{
       token: {
-        colorPrimary: 'black',
-        colorPrimaryBg: '#f1f1f1'
+        colorPrimary: '#eb2f96',
       },
     }}
   >
@@ -24,8 +22,7 @@ function App() {
             <Route path="/" element={<Main/>} />
             <Route path="/book/:id" element={<Detail/>} />
             <Route path="/board" element={<Board/>} />
-            <Route path="/advsearch" element={<Advsearch/>} />
-        </Routes>
+            </Routes>
       </header>
     </div>
     </Router>

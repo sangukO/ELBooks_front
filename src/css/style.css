@@ -39,12 +39,12 @@ img {
 
 a {
     text-decoration: none;
-    color: black;
+    color: #eb2f96;
 }
 
 #logo {
     text-decoration: none;
-    color: black;
+    color: #eb2f96;
 }
 
 #autoImg {
@@ -60,7 +60,7 @@ p.autoBookInfo {
 mark {
     /* background-color: transparent; */
     background-color: #faf0ff;
-    color: red;
+    color: #eb2f96;
 }
 
 #bookTitle {

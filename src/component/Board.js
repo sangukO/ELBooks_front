@@ -1,12 +1,8 @@
 import "../css/style.css";
-import { Layout, Progress, Rate } from 'antd';
+import { Layout, Progress } from 'antd';
 import { Content } from "antd/es/layout/layout";
 import MenuBar from "./Menu";
 import { useEffect, useState } from "react";
-import {
-  HeartFilled,
-} from '@ant-design/icons';
-
 function Board() {
 
   const [percent, setPercent] = useState(0);
@@ -44,10 +40,6 @@ function Board() {
                     style={{width:"60vw", height:"55vh"}}>
                   </iframe>
                   </div>
-
-                {/* <div id="rate" style={{ float: 'right'}}>
-                  <Rate style={{ color: '#ffadd2' }} character={<HeartFilled />} allowHalf />
-                </div> */}
               </div>
             </div>
           </div>

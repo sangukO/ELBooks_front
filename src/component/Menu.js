@@ -48,10 +48,6 @@ const Menu = () => {
               {
                 key: '/',
                 label: <Link to={"/"}>제목 검색</Link>,
-              },
-              {
-                key: '/Advsearch',
-                label: <Link to={"/Advsearch"}>상세 검색</Link>,
               }
             ]
           },
