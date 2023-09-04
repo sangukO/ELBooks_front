@@ -2,8 +2,9 @@ import { Menu as MenuBar, Layout} from 'antd';
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import {
-  SearchOutlined,
-  FileSearchOutlined
+  FileSearchOutlined,
+  BookOutlined,
+  UploadOutlined
 } from '@ant-design/icons';
 const { Sider } = Layout;
 
@@ -56,15 +57,15 @@ const Menu = () => {
           },
           {
             key: '/Board',
-            // icon: <BookOutlined />,
-            icon:<Emoji symbol="📋"/>,
-            label: <Link to={"/Board"}> 대시 보드</Link>
+            icon: <BookOutlined />,
+            // icon:<Emoji symbol="📋"/>,
+            label: <Link to={"/Board"}>대시 보드</Link>
           },
           {
             key: '3',
-            // icon: <UploadOutlined />,
-            icon:<Emoji symbol="🚧"/>,
-            label: " 도서 추가",
+            icon: <UploadOutlined />,
+            // icon:<Emoji symbol="🚧"/>,
+            label: "도서 추가",
             disabled: true
           },
         ]}

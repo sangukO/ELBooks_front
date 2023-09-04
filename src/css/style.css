@@ -42,9 +42,9 @@ a {
     color: black;
 }
 
-a#logo {
+#logo {
     text-decoration: none;
-    color: #eb2f96;
+    color: black;
 }
 
 #autoImg {
@@ -56,10 +56,11 @@ p.autoBookInfo {
     text-overflow: ellipsis;
 }
 
+/** 자동완성 mark */
 mark {
     /* background-color: transparent; */
-    background-color: #fff0f6;
-    color: #eb2f96;
+    background-color: #faf0ff;
+    color: red;
 }
 
 #bookTitle {
@@ -77,7 +78,7 @@ body::-webkit-scrollbar {
 
 body::-webkit-scrollbar-thumb {
     height: 30%; 
-    background: #ffd6e7; 
+    background: #d6d6d6; 
     
     border-radius: 5px;
 }
@@ -88,11 +89,6 @@ body::-webkit-scrollbar-track {
 
 .ant-menu-light.ant-menu-inline .ant-menu-sub.ant-menu-inline {
     background-color: white;
-}
-
-::selection {
-    background-color: #fff0f6;
-    color: #eb2f96;
 }
 
 .center {

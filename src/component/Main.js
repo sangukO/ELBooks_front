@@ -120,7 +120,8 @@ function Main() {
                     { value: 50, label: 50},
                     { value: 100, label: 100}]}
                 >
-                </Select>개 보기<Emoji symbol="🍒"/>
+                </Select>
+                {/* 개 보기<Emoji symbol="🍒"/> */}
               </div>
             </div>
           </Content>
